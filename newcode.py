@@ -27,17 +27,18 @@ class Player(object):
 
 class Game(object):
 
-    def __init__(self):
-        self.start = TheDarkApartment()
+    def __init__(self, start):
+        self.start = start
         self.player = Player()
         
     def play(self):
-		self.progress = self.start.theStreet()
-        
-		while True:
-			print "-*10"
-			scene = self.progress
-			next_scene=scene()
+        self.next_scene = self.start
+        print "hello!"
+        #this loop should continuously run the next function unless an 'exit()' is called
+        while True:
+            print "-*10"
+            scene = self.next_scene
+            self.next_scene = scene()
             
     def textPrint(text):
         #prints out a block of text and caps it to X number of chars per line.
@@ -52,10 +53,14 @@ class Game(object):
                     break
             print "".join(line)
 
+            
 class TheDarkApartment(Game):
-	
+    
     def theStreet(self):
+        print "Hello"
         self.textPrint("If I type a bunch of text here, it should work.")
+        choice = raw_input("> ")
+        
  
-new_game = TheDarkApartment()
+new_game = TheDarkApartment("theStreet")
 new_game.play()
