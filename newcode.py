@@ -32,22 +32,23 @@ class Game(object):
         self.player = Player()
         
     def play(self):
-        self.next_scene = self.start
-        print "hello!"
+        next_scene = self.start
         #this loop should continuously run the next function unless an 'exit()' is called
         while True:
-            print "-*10"
-            scene = self.next_scene
-            self.next_scene = scene()
+            print "-"*20
+            scene = getattr(self, next_scene)
+            next_scene = scene()
             
-    def textPrint(text):
+    def textPrint(self, text):
         #prints out a block of text and caps it to X number of chars per line.
 		#Words that go past the char limit start at the next line
-        #this currently is a bit buggy and needs to be fixed
+        #less buggy now
         #I also want it to ignore new lines in the text
+        chars = list(text)
         for char in chars:
             line = []
-            while len(line) < 60:
+            while len(line) < 60 and len(chars) > 0:
+                if chars
                 line[len(line):] = [chars.pop(0)]
                 if line[len(line)-1] == " " and len(line) >= 55:
                     break
@@ -58,9 +59,10 @@ class TheDarkApartment(Game):
     
     def theStreet(self):
         print "Hello"
-        self.textPrint("If I type a bunch of text here, it should work.")
+        self.textPrint("""If I type a bunch of text here, it should work.
+                          If I type a bunch of text here, it should work""")
         choice = raw_input("> ")
-        
+        exit()
  
-new_game = TheDarkApartment("theStreet")
+new_game = TheDarkApartment('theStreet')
 new_game.play()
